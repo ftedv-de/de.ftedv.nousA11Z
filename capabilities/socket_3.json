@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Channel 3",
+    "de": "Kanal 3"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle"
+}
