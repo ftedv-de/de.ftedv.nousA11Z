@@ -1,0 +1,51 @@
+{
+  "name": {
+    "en": "NOUS A11Z Power Strip",
+    "de": "NOUS A11Z Steckdosenleiste"
+  },
+  "class": "socket",
+  "capabilities": [
+    "onoff",
+    "onoff.zigbee-2-6",
+    "onoff.zigbee-3-6",
+    "meter_power",
+    "measure_power",
+    "measure_voltage",
+    "measure_current"
+  ],
+  "capabilityOptions": {
+    "onoff": {
+      "title": {
+        "en": "Socket 1",
+        "de": "Steckdose 1"
+      }
+    },
+    "onoff.zigbee-2-6": {
+      "title": {
+        "en": "Socket 2",
+        "de": "Steckdose 2"
+      }
+    },
+    "onoff.zigbee-3-6": {
+      "title": {
+        "en": "Socket 3",
+        "de": "Steckdose 3"
+      }
+    }
+  },
+  "zigbee": {
+    "manufacturerName": "_TZ3210_6cmeijtd",
+    "productId": "TS011F",
+    "learnmode": {
+      "image": "/drivers/a11z/assets/learnmode.svg",
+      "instruction": {
+        "en": "Reset the NOUS A11Z power strip and start pairing.",
+        "de": "Setze die NOUS A11Z Steckdosenleiste zurück und starte das Pairing."
+      }
+    }
+  },
+  "images": {
+    "large": "/drivers/a11z/assets/images/large.png",
+    "small": "/drivers/a11z/assets/images/small.png"
+  }
+}
