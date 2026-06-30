@@ -13,6 +13,10 @@
     "measure_voltage",
     "measure_current"
   ],
+  "images": {
+    "small": "/drivers/a11z/assets/icon.svg",
+    "large": "/drivers/a11z/assets/icon.svg"
+  },
   "settings": [
     {
       "id": "debug",
