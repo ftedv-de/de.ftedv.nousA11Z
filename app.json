@@ -4,17 +4,14 @@
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "runtime": "nodejs",
-  "platforms": [
-    "local"
-  ],
-  "name": {
-    "en": "Nous A11Z New"
-  },
-  "description": {
-    "en": "Support for new hardware version of Nous A11Z"
-  },
-  "category": [
-    "energy"
-  ],
-  "permissions": []
+  "platforms": ["local"],
+  "name": {"en": "Nous A11Z New"},
+  "description": {"en": "Support for new hardware version of Nous A11Z"},
+  "category": ["energy"],
+  "permissions": [],
+  "capabilities": {
+    "socket1": {"type": "boolean", "title": {"en": "Socket 1"}, "getable": true, "setable": true, "uiComponent": "toggle"},
+    "socket_2": {"type": "boolean", "title": {"en": "Socket 2"}, "getable": true, "setable": true, "uiComponent": "toggle"},
+    "socket_3": {"type": "boolean", "title": {"en": "Socket 3"}, "getable": true, "setable": true, "uiComponent": "toggle"}
+  }
 }
