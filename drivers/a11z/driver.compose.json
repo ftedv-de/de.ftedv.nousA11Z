@@ -14,8 +14,8 @@
     "measure_current"
   ],
   "images": {
-    "small": "/drivers/a11z/assets/icon.svg",
-    "large": "/drivers/a11z/assets/icon.svg"
+    "small": "/drivers/a11z/assets/icon-small.png",
+    "large": "/drivers/a11z/assets/icon-large.png"
   },
   "settings": [
     {
