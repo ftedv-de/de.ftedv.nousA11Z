@@ -11,15 +11,10 @@
     "en": "Nous A11Z New"
   },
   "description": {
-    "en": "Support for new Hardware version of Nous A11Z"
+    "en": "Support for new hardware version of Nous A11Z"
   },
   "category": [
     "energy"
   ],
-  "permissions": [],
-  "images": {
-    "small": "/assets/images/small.png",
-    "large": "/assets/images/large.png",
-    "xlarge": "/assets/images/xlarge.png"
-  }
+  "permissions": []
 }
