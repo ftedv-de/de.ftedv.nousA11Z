@@ -17,6 +17,8 @@ class NousA11ZDevice extends ZigBeeDevice {
     this.log('NOUS A11Z initialized');
     this.log('Outlet mapping: outlet_1->EP1, outlet_2->EP2, channel_c->EP3');
 
+    await this.configureTuyaBasicRead();
+
     for (const socket of SOCKET_CAPABILITIES) {
       this.registerManualSocketCapability(socket);
     }
@@ -27,6 +29,28 @@ class NousA11ZDevice extends ZigBeeDevice {
     this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
     this.registerCapability('measure_voltage', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
     this.registerCapability('measure_current', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
+  }
+
+  async configureTuyaBasicRead() {
+    const basicCluster = this.zclNode.endpoints[1]?.clusters?.basic;
+    if (!basicCluster) {
+      this.error('Tuya basic read skipped: endpoint 1 basic cluster not found');
+      return;
+    }
+
+    try {
+      this.log('Running Tuya basic read on endpoint 1');
+      const result = await basicCluster.readAttributes([
+        'manufacturerName',
+        'zclVersion',
+        'appVersion',
+        'modelId',
+        'powerSource',
+      ]);
+      this.log('Tuya basic read result:', JSON.stringify(result));
+    } catch (err) {
+      this.error(`Tuya basic read failed: ${err.message}`);
+    }
   }
 
   registerManualSocketCapability({ capability, endpoint, label }) {
