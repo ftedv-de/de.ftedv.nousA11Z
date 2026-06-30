@@ -9,15 +9,25 @@ const SOCKET_CAPABILITIES = [
   { capability: 'outlet_3', endpoint: 3, label: 'Outlet 3' },
 ];
 
+const BASIC_ATTRIBUTES = [
+  'manufacturerName',
+  'zclVersion',
+  'appVersion',
+  'modelId',
+  'powerSource',
+];
+
+const TUYA_MAGIC_ATTRIBUTE = 0xfffe;
+
 class NousA11ZDevice extends ZigBeeDevice {
 
   async onNodeInit({ zclNode }) {
     this.zclNode = zclNode;
 
-    this.log('NOUS A11Z initialized');
-    this.log('Outlet mapping: outlet_1->EP1, outlet_2->EP2, outlet_3->EP3');
+    this.info('NOUS A11Z initialized');
+    this.debug('Outlet mapping: outlet_1->EP1, outlet_2->EP2, outlet_3->EP3');
 
-    await this.configureTuyaBasicRead();
+    await this.configureMagicPacket();
 
     for (const socket of SOCKET_CAPABILITIES) {
       this.registerManualSocketCapability(socket);
@@ -31,26 +41,37 @@ class NousA11ZDevice extends ZigBeeDevice {
     this.registerCapability('measure_current', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
   }
 
-  async configureTuyaBasicRead() {
+  info(...args) {
+    this.log(...args);
+  }
+
+  debug(...args) {
+    if (this.getSetting('debug') === true) {
+      this.log(...args);
+    }
+  }
+
+  async configureMagicPacket() {
     const basicCluster = this.zclNode.endpoints[1]?.clusters?.basic;
     if (!basicCluster) {
-      this.error('Tuya basic read skipped: endpoint 1 basic cluster not found');
+      this.error('Tuya magic packet skipped: endpoint 1 basic cluster not found');
       return;
     }
 
     try {
-      this.log('Running Tuya basic read on endpoint 1');
-      const result = await basicCluster.readAttributes([
-        'manufacturerName',
-        'zclVersion',
-        'appVersion',
-        'modelId',
-        'powerSource',
-        0xfffe,
-      ]);
-      this.log('Tuya basic read result:', JSON.stringify(result));
+      this.debug('Tuya magic packet: reading standard basic attributes on endpoint 1');
+      const result = await basicCluster.readAttributes(BASIC_ATTRIBUTES);
+      this.debug('Tuya magic packet basic result:', JSON.stringify(result));
     } catch (err) {
-      this.error(`Tuya basic read failed: ${err.message}`);
+      this.error(`Tuya magic packet basic read failed: ${err.message}`);
+    }
+
+    try {
+      this.debug('Tuya magic packet: reading manufacturer attribute 0xfffe on endpoint 1');
+      const result = await basicCluster.readAttributes([TUYA_MAGIC_ATTRIBUTE]);
+      this.debug('Tuya magic packet 0xfffe result:', JSON.stringify(result));
+    } catch (err) {
+      this.debug(`Tuya magic packet 0xfffe read ignored: ${err.message}`);
     }
   }
 
@@ -58,10 +79,10 @@ class NousA11ZDevice extends ZigBeeDevice {
     const onOffCluster = this.getOnOffCluster(endpoint, label);
     if (!onOffCluster) return;
 
-    this.log(`Registering ${label} (${capability}) manually on endpoint ${endpoint}`);
+    this.debug(`Registering ${label} (${capability}) manually on endpoint ${endpoint}`);
 
     this.registerCapabilityListener(capability, async (value) => {
-      this.log(`set ${capability} -> ${value} (cluster: onOff, endpoint: ${endpoint})`);
+      this.debug(`set ${capability} -> ${value} (cluster: onOff, endpoint: ${endpoint})`);
 
       if (value) {
         await onOffCluster.setOn();
@@ -73,7 +94,7 @@ class NousA11ZDevice extends ZigBeeDevice {
     });
 
     onOffCluster.on('attr.onOff', (value) => {
-      this.log(`handle report (cluster: onOff, capability: ${capability}, endpoint: ${endpoint}), parsed payload: ${value}`);
+      this.debug(`handle report (cluster: onOff, capability: ${capability}, endpoint: ${endpoint}), parsed payload: ${value}`);
       this.setCapabilityValue(capability, value).catch(this.error);
     });
 
@@ -97,9 +118,9 @@ class NousA11ZDevice extends ZigBeeDevice {
 
   async readSocketState(capability, endpoint, onOffCluster) {
     try {
-      this.log(`get -> ${capability} -> read attribute (cluster: onOff, attributeId: onOff, endpoint: ${endpoint})`);
+      this.debug(`get -> ${capability} -> read attribute (cluster: onOff, attributeId: onOff, endpoint: ${endpoint})`);
       const { onOff } = await onOffCluster.readAttributes(['onOff']);
-      this.log(`get -> ${capability} -> read attribute (cluster: onOff, attributeId: onOff, endpoint: ${endpoint}) -> parsed result ${onOff}`);
+      this.debug(`get -> ${capability} -> read attribute (cluster: onOff, attributeId: onOff, endpoint: ${endpoint}) -> parsed result ${onOff}`);
       await this.setCapabilityValue(capability, onOff);
     } catch (err) {
       this.error(`Could not read ${capability} from endpoint ${endpoint}: ${err.message}`);
