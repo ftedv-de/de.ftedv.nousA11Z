@@ -1,0 +1,4 @@
+{
+  "title": {"en": "Turn Outlet 3 on", "de": "Ausgang 3 einschalten"},
+  "args": [{"name": "device", "type": "device", "filter": "driver_id=a11z"}]
+}
