@@ -5,7 +5,6 @@
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "runtime": "nodejs",
-<<<<<<< HEAD
   "platforms": [
     "local"
   ],
@@ -28,9 +27,9 @@
       },
       "class": "socket",
       "capabilities": [
-        "socket1",
-        "socket_2",
-        "socket_3",
+        "outlet_1",
+        "outlet_2",
+        "outlet_3",
         "meter_power",
         "measure_power",
         "measure_voltage",
@@ -91,18 +90,47 @@
       },
       "id": "a11z"
     }
-  ]
-}
-=======
-  "platforms": ["local"],
-  "name": {"en": "Nous A11Z New"},
-  "description": {"en": "Support for new hardware version of Nous A11Z"},
-  "category": ["energy"],
-  "permissions": [],
+  ],
   "capabilities": {
-    "socket1": {"type": "boolean", "title": {"en": "Socket 1"}, "getable": true, "setable": true, "uiComponent": "toggle"},
-    "socket_2": {"type": "boolean", "title": {"en": "Socket 2"}, "getable": true, "setable": true, "uiComponent": "toggle"},
-    "socket_3": {"type": "boolean", "title": {"en": "Socket 3"}, "getable": true, "setable": true, "uiComponent": "toggle"}
+    "channel_c": {
+      "type": "boolean",
+      "title": {
+        "en": "Channel C",
+        "de": "Kanal C"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle"
+    },
+    "outlet_1": {
+      "type": "boolean",
+      "title": {
+        "en": "Outlet 1",
+        "de": "Ausgang 1"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle"
+    },
+    "outlet_2": {
+      "type": "boolean",
+      "title": {
+        "en": "Outlet 2",
+        "de": "Ausgang 2"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle"
+    },
+    "outlet_3": {
+      "type": "boolean",
+      "title": {
+        "en": "Outlet 3",
+        "de": "Ausgang 3"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle"
+    }
   }
 }
->>>>>>> 4a49cb726f319c205cfde4a403f91f94691a0851
