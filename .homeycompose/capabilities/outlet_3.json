@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Outlet 3",
+    "de": "Ausgang 3"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle"
+}
