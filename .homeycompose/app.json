@@ -4,22 +4,19 @@
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "runtime": "nodejs",
-  "platforms": [
-    "local"
-  ],
-  "name": {
-    "en": "NOUS A11Z",
-    "de": "NOUS A11Z"
-  },
+  "platforms": ["local"],
+  "name": {"en": "NOUS A11Z", "de": "NOUS A11Z"},
   "description": {
     "en": "Adds reliable support for the NOUS A11Z Zigbee power strip with three independently controlled outlets.",
     "de": "Unterstützt die NOUS A11Z Zigbee-Steckdosenleiste mit drei unabhängig steuerbaren Ausgängen."
   },
-  "category": [
-    "energy"
-  ],
+  "category": ["energy"],
   "permissions": [],
   "author": "Florian Trueck",
   "brandColor": "#1A73E8",
-  "support": "https://github.com/ftedv-de/de.ftedv.nousA11Z/issues"
+  "support": "https://github.com/ftedv-de/de.ftedv.nousA11Z/issues",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  }
 }
