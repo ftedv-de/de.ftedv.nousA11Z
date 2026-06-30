@@ -6,8 +6,8 @@
   "class": "socket",
   "capabilities": [
     "socket1",
-    "socket2",
-    "socket3",
+    "socket_2",
+    "socket_3",
     "meter_power",
     "measure_power",
     "measure_voltage",
@@ -18,44 +18,16 @@
     "productId": "TS011F",
     "endpoints": {
       "1": {
-        "clusters": [
-          0,
-          3,
-          4,
-          5,
-          6,
-          1794,
-          2820,
-          57344,
-          57345
-        ],
-        "bindings": [
-          6,
-          1794,
-          2820
-        ]
+        "clusters": [0, 3, 4, 5, 6, 1794, 2820, 57344, 57345],
+        "bindings": [6, 1794, 2820]
       },
       "2": {
-        "clusters": [
-          4,
-          5,
-          6,
-          57345
-        ],
-        "bindings": [
-          6
-        ]
+        "clusters": [4, 5, 6, 57345],
+        "bindings": [6]
       },
       "3": {
-        "clusters": [
-          4,
-          5,
-          6,
-          57345
-        ],
-        "bindings": [
-          6
-        ]
+        "clusters": [4, 5, 6, 57345],
+        "bindings": [6]
       }
     },
     "learnmode": {
