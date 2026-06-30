@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Socket 1",
+    "de": "Steckdose 1"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle"
+}
