@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Channel C",
+    "de": "Kanal C"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle"
+}
