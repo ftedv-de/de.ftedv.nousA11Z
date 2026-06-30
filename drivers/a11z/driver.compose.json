@@ -5,9 +5,9 @@
   },
   "class": "socket",
   "capabilities": [
-    "socket1",
-    "socket_2",
-    "socket_3",
+    "outlet_1",
+    "outlet_2",
+    "channel_c",
     "meter_power",
     "measure_power",
     "measure_voltage",
