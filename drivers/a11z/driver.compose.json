@@ -43,9 +43,5 @@
         "de": "Setze die NOUS A11Z Steckdosenleiste zurück und starte das Pairing."
       }
     }
-  },
-  "images": {
-    "large": "/drivers/a11z/assets/images/large.png",
-    "small": "/drivers/a11z/assets/images/small.png"
   }
 }
