@@ -13,6 +13,17 @@
     "measure_voltage",
     "measure_current"
   ],
+  "settings": [
+    {
+      "id": "debug",
+      "type": "checkbox",
+      "label": {
+        "en": "Enable debug logging",
+        "de": "Debug-Logging aktivieren"
+      },
+      "value": false
+    }
+  ],
   "zigbee": {
     "manufacturerName": "_TZ3210_6cmeijtd",
     "productId": "TS011F",
