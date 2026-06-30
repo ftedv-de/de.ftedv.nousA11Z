@@ -2,13 +2,10 @@
 
 const Homey = require('homey');
 
-module.exports = class MyApp extends Homey.App {
+module.exports = class NousA11ZApp extends Homey.App {
 
-  /**
-   * onInit is called when the app is initialized.
-   */
   async onInit() {
-    this.log('MyApp has been initialized');
+    this.log('Nous A11Z app initialized');
   }
 
 };
