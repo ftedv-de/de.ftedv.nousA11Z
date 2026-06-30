@@ -62,16 +62,20 @@ class NousA11ZDevice extends ZigBeeDevice {
       this.debug('Tuya magic packet: reading standard basic attributes on endpoint 1');
       const result = await basicCluster.readAttributes(BASIC_ATTRIBUTES);
       this.debug('Tuya magic packet basic result:', JSON.stringify(result));
+      await this.setStoreValue('diagnostics.basic', result);
     } catch (err) {
       this.error(`Tuya magic packet basic read failed: ${err.message}`);
+      await this.setStoreValue('diagnostics.basicError', err.message).catch(this.error);
     }
 
     try {
       this.debug('Tuya magic packet: reading manufacturer attribute 0xfffe on endpoint 1');
       const result = await basicCluster.readAttributes([TUYA_MAGIC_ATTRIBUTE]);
       this.debug('Tuya magic packet 0xfffe result:', JSON.stringify(result));
+      await this.setStoreValue('diagnostics.magicPacket', result);
     } catch (err) {
       this.debug(`Tuya magic packet 0xfffe read ignored: ${err.message}`);
+      await this.setStoreValue('diagnostics.magicPacketWarning', err.message).catch(this.error);
     }
   }
 
@@ -83,19 +87,13 @@ class NousA11ZDevice extends ZigBeeDevice {
 
     this.registerCapabilityListener(capability, async (value) => {
       this.debug(`set ${capability} -> ${value} (cluster: onOff, endpoint: ${endpoint})`);
-
-      if (value) {
-        await onOffCluster.setOn();
-      } else {
-        await onOffCluster.setOff();
-      }
-
-      await this.setCapabilityValue(capability, value).catch(this.error);
+      await this.setOutletState(capability, value);
+      return true;
     });
 
     onOffCluster.on('attr.onOff', (value) => {
       this.debug(`handle report (cluster: onOff, capability: ${capability}, endpoint: ${endpoint}), parsed payload: ${value}`);
-      this.setCapabilityValue(capability, value).catch(this.error);
+      this.updateOutletState(capability, value).catch(this.error);
     });
 
     this.readSocketState(capability, endpoint, onOffCluster).catch(this.error);
@@ -116,12 +114,57 @@ class NousA11ZDevice extends ZigBeeDevice {
     return ep.clusters.onOff;
   }
 
+  getEndpointForCapability(capability) {
+    const socket = SOCKET_CAPABILITIES.find((entry) => entry.capability === capability);
+    if (!socket) throw new Error(`Unknown outlet capability: ${capability}`);
+    return socket.endpoint;
+  }
+
+  async setOutletState(capability, value) {
+    const endpoint = this.getEndpointForCapability(capability);
+    const onOffCluster = this.getOnOffCluster(endpoint, capability);
+    if (!onOffCluster) throw new Error(`No onOff cluster for ${capability}`);
+
+    if (value) {
+      await onOffCluster.setOn();
+    } else {
+      await onOffCluster.setOff();
+    }
+
+    await this.updateOutletState(capability, value);
+  }
+
+  async updateOutletState(capability, value) {
+    const oldValue = this.getCapabilityValue(capability);
+    await this.setCapabilityValue(capability, value);
+
+    if (oldValue !== value) {
+      await this.triggerOutletFlows(capability, value).catch(this.error);
+    }
+  }
+
+  async triggerOutletFlows(capability, value) {
+    const outletNumber = Number(capability.replace('outlet_', ''));
+    const tokens = {
+      state: value,
+      outlet: outletNumber,
+    };
+
+    await this.homey.flow.getDeviceTriggerCard(`${capability}_changed`).trigger(this, tokens, { state: value });
+
+    if (value) {
+      await this.homey.flow.getDeviceTriggerCard(`${capability}_turned_on`).trigger(this, tokens, {});
+    } else {
+      await this.homey.flow.getDeviceTriggerCard(`${capability}_turned_off`).trigger(this, tokens, {});
+    }
+  }
+
   async readSocketState(capability, endpoint, onOffCluster) {
     try {
       this.debug(`get -> ${capability} -> read attribute (cluster: onOff, attributeId: onOff, endpoint: ${endpoint})`);
       const { onOff } = await onOffCluster.readAttributes(['onOff']);
       this.debug(`get -> ${capability} -> read attribute (cluster: onOff, attributeId: onOff, endpoint: ${endpoint}) -> parsed result ${onOff}`);
-      await this.setCapabilityValue(capability, onOff);
+      await this.updateOutletState(capability, onOff);
     } catch (err) {
       this.error(`Could not read ${capability} from endpoint ${endpoint}: ${err.message}`);
     }
