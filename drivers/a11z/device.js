@@ -6,7 +6,7 @@ const { CLUSTER } = require('zigbee-clusters');
 const SOCKET_CAPABILITIES = [
   { capability: 'outlet_1', endpoint: 1, label: 'Outlet 1' },
   { capability: 'outlet_2', endpoint: 2, label: 'Outlet 2' },
-  { capability: 'channel_c', endpoint: 3, label: 'Outlet 3' },
+  { capability: 'outlet_3', endpoint: 3, label: 'Outlet 3' },
 ];
 
 class NousA11ZDevice extends ZigBeeDevice {
@@ -15,7 +15,7 @@ class NousA11ZDevice extends ZigBeeDevice {
     this.zclNode = zclNode;
 
     this.log('NOUS A11Z initialized');
-    this.log('Outlet mapping: outlet_1->EP1, outlet_2->EP2, channel_c->EP3');
+    this.log('Outlet mapping: outlet_1->EP1, outlet_2->EP2, outlet_3->EP3');
 
     await this.configureTuyaBasicRead();
 
@@ -46,6 +46,7 @@ class NousA11ZDevice extends ZigBeeDevice {
         'appVersion',
         'modelId',
         'powerSource',
+        0xfffe,
       ]);
       this.log('Tuya basic read result:', JSON.stringify(result));
     } catch (err) {
