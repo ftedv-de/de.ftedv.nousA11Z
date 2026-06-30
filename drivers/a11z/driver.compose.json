@@ -36,6 +36,48 @@
   "zigbee": {
     "manufacturerName": "_TZ3210_6cmeijtd",
     "productId": "TS011F",
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          1794,
+          2820,
+          57344,
+          57345
+        ],
+        "bindings": [
+          6,
+          1794,
+          2820
+        ]
+      },
+      "2": {
+        "clusters": [
+          4,
+          5,
+          6,
+          57345
+        ],
+        "bindings": [
+          6
+        ]
+      },
+      "3": {
+        "clusters": [
+          4,
+          5,
+          6,
+          57345
+        ],
+        "bindings": [
+          6
+        ]
+      }
+    },
     "learnmode": {
       "image": "/drivers/a11z/assets/learnmode.svg",
       "instruction": {
