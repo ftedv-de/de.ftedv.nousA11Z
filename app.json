@@ -9,16 +9,442 @@
     "local"
   ],
   "name": {
-    "en": "Nous A11Z New"
+    "en": "NOUS A11Z",
+    "de": "NOUS A11Z"
   },
   "description": {
-    "en": "Support for new hardware version of Nous A11Z"
+    "en": "Adds reliable support for the NOUS A11Z Zigbee power strip with three independently controlled outlets.",
+    "de": "Unterstützt die NOUS A11Z Zigbee-Steckdosenleiste mit drei unabhängig steuerbaren Ausgängen."
   },
   "category": [
     "energy"
   ],
   "permissions": [],
   "author": "Florian Trueck",
+  "brandColor": "#1A73E8",
+  "support": "https://github.com/ftedv-de/de.ftedv.nousA11Z/issues",
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Outlet 1 changed",
+          "de": "Ausgang 1 wurde geändert"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_1_changed"
+      },
+      {
+        "title": {
+          "en": "Outlet 1 turned off",
+          "de": "Ausgang 1 wurde ausgeschaltet"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_1_turned_off"
+      },
+      {
+        "title": {
+          "en": "Outlet 1 turned on",
+          "de": "Ausgang 1 wurde eingeschaltet"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_1_turned_on"
+      },
+      {
+        "title": {
+          "en": "Outlet 2 changed",
+          "de": "Ausgang 2 wurde geändert"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_2_changed"
+      },
+      {
+        "title": {
+          "en": "Outlet 2 turned off",
+          "de": "Ausgang 2 wurde ausgeschaltet"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_2_turned_off"
+      },
+      {
+        "title": {
+          "en": "Outlet 2 turned on",
+          "de": "Ausgang 2 wurde eingeschaltet"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_2_turned_on"
+      },
+      {
+        "title": {
+          "en": "Outlet 3 changed",
+          "de": "Ausgang 3 wurde geändert"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_3_changed"
+      },
+      {
+        "title": {
+          "en": "Outlet 3 turned off",
+          "de": "Ausgang 3 wurde ausgeschaltet"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_3_turned_off"
+      },
+      {
+        "title": {
+          "en": "Outlet 3 turned on",
+          "de": "Ausgang 3 wurde eingeschaltet"
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "boolean",
+            "title": {
+              "en": "State",
+              "de": "Status"
+            }
+          },
+          {
+            "name": "outlet",
+            "type": "number",
+            "title": {
+              "en": "Outlet",
+              "de": "Ausgang"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "outlet_3_turned_on"
+      }
+    ],
+    "conditions": [
+      {
+        "title": {
+          "en": "Outlet 1 is on",
+          "de": "Ausgang 1 ist eingeschaltet"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "is_outlet_1_on"
+      },
+      {
+        "title": {
+          "en": "Outlet 2 is on",
+          "de": "Ausgang 2 ist eingeschaltet"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "is_outlet_2_on"
+      },
+      {
+        "title": {
+          "en": "Outlet 3 is on",
+          "de": "Ausgang 3 ist eingeschaltet"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "is_outlet_3_on"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Turn Outlet 1 off",
+          "de": "Ausgang 1 ausschalten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "turn_off_outlet_1"
+      },
+      {
+        "title": {
+          "en": "Turn Outlet 2 off",
+          "de": "Ausgang 2 ausschalten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "turn_off_outlet_2"
+      },
+      {
+        "title": {
+          "en": "Turn Outlet 3 off",
+          "de": "Ausgang 3 ausschalten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "turn_off_outlet_3"
+      },
+      {
+        "title": {
+          "en": "Turn Outlet 1 on",
+          "de": "Ausgang 1 einschalten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "turn_on_outlet_1"
+      },
+      {
+        "title": {
+          "en": "Turn Outlet 2 on",
+          "de": "Ausgang 2 einschalten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "turn_on_outlet_2"
+      },
+      {
+        "title": {
+          "en": "Turn Outlet 3 on",
+          "de": "Ausgang 3 einschalten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=a11z"
+          }
+        ],
+        "id": "turn_on_outlet_3"
+      }
+    ]
+  },
   "drivers": [
     {
       "name": {
@@ -34,6 +460,21 @@
         "measure_power",
         "measure_voltage",
         "measure_current"
+      ],
+      "images": {
+        "small": "/drivers/a11z/assets/icon-small.png",
+        "large": "/drivers/a11z/assets/icon-large.png"
+      },
+      "settings": [
+        {
+          "id": "debug",
+          "type": "checkbox",
+          "label": {
+            "en": "Enable debug logging",
+            "de": "Debug-Logging aktivieren"
+          },
+          "value": false
+        }
       ],
       "zigbee": {
         "manufacturerName": "_TZ3210_6cmeijtd",
@@ -92,16 +533,6 @@
     }
   ],
   "capabilities": {
-    "channel_c": {
-      "type": "boolean",
-      "title": {
-        "en": "Channel C",
-        "de": "Kanal C"
-      },
-      "getable": true,
-      "setable": true,
-      "uiComponent": "toggle"
-    },
     "outlet_1": {
       "type": "boolean",
       "title": {
