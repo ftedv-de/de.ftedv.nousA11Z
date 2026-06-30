@@ -1,0 +1,4 @@
+{
+  "title": {"en": "Outlet 2 is on", "de": "Ausgang 2 ist eingeschaltet"},
+  "args": [{"name": "device", "type": "device", "filter": "driver_id=a11z"}]
+}
