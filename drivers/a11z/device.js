@@ -4,9 +4,9 @@ const { ZigBeeDevice } = require('homey-zigbeedriver');
 const { CLUSTER } = require('zigbee-clusters');
 
 const SOCKET_CAPABILITIES = [
-  { capability: 'onoff.socket1', endpoint: 1, label: 'Socket 1' },
-  { capability: 'onoff.socket2', endpoint: 2, label: 'Socket 2' },
-  { capability: 'onoff.socket3', endpoint: 3, label: 'Socket 3' },
+  { capability: 'outlet_1', endpoint: 1, label: 'Outlet 1' },
+  { capability: 'outlet_2', endpoint: 2, label: 'Outlet 2' },
+  { capability: 'channel_c', endpoint: 3, label: 'Outlet 3' },
 ];
 
 class NousA11ZDevice extends ZigBeeDevice {
@@ -15,7 +15,7 @@ class NousA11ZDevice extends ZigBeeDevice {
     this.zclNode = zclNode;
 
     this.log('NOUS A11Z initialized');
-    this.log('Socket mapping: onoff.socket1->EP1, onoff.socket2->EP2, onoff.socket3->EP3');
+    this.log('Outlet mapping: outlet_1->EP1, outlet_2->EP2, channel_c->EP3');
 
     for (const socket of SOCKET_CAPABILITIES) {
       this.registerManualSocketCapability(socket);
@@ -23,21 +23,10 @@ class NousA11ZDevice extends ZigBeeDevice {
 
     await this.configureSocketReporting();
 
-    this.registerCapability('meter_power', CLUSTER.METERING, {
-      endpoint: 1,
-    });
-
-    this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, {
-      endpoint: 1,
-    });
-
-    this.registerCapability('measure_voltage', CLUSTER.ELECTRICAL_MEASUREMENT, {
-      endpoint: 1,
-    });
-
-    this.registerCapability('measure_current', CLUSTER.ELECTRICAL_MEASUREMENT, {
-      endpoint: 1,
-    });
+    this.registerCapability('meter_power', CLUSTER.METERING, { endpoint: 1 });
+    this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
+    this.registerCapability('measure_voltage', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
+    this.registerCapability('measure_current', CLUSTER.ELECTRICAL_MEASUREMENT, { endpoint: 1 });
   }
 
   registerManualSocketCapability({ capability, endpoint, label }) {
