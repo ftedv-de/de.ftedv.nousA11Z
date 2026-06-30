@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Outlet 1 turned on",
+    "de": "Ausgang 1 wurde eingeschaltet"
+  },
+  "tokens": [
+    {"name": "state", "type": "boolean", "title": {"en": "State", "de": "Status"}},
+    {"name": "outlet", "type": "number", "title": {"en": "Outlet", "de": "Ausgang"}}
+  ],
+  "args": [
+    {"name": "device", "type": "device", "filter": "driver_id=a11z"}
+  ]
+}
