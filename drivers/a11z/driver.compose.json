@@ -5,34 +5,14 @@
   },
   "class": "socket",
   "capabilities": [
-    "onoff.socket1",
-    "onoff.socket2",
-    "onoff.socket3",
+    "socket1",
+    "socket2",
+    "socket3",
     "meter_power",
     "measure_power",
     "measure_voltage",
     "measure_current"
   ],
-  "capabilityOptions": {
-    "onoff.socket1": {
-      "title": {
-        "en": "Socket 1",
-        "de": "Steckdose 1"
-      }
-    },
-    "onoff.socket2": {
-      "title": {
-        "en": "Socket 2",
-        "de": "Steckdose 2"
-      }
-    },
-    "onoff.socket3": {
-      "title": {
-        "en": "Socket 3",
-        "de": "Steckdose 3"
-      }
-    }
-  },
   "zigbee": {
     "manufacturerName": "_TZ3210_6cmeijtd",
     "productId": "TS011F",
