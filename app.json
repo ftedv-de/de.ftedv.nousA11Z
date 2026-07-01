@@ -23,6 +23,10 @@
   "author": "Florian Trueck",
   "brandColor": "#1A73E8",
   "support": "https://github.com/ftedv-de/de.ftedv.nousA11Z/issues",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
   "flow": {
     "triggers": [
       {
