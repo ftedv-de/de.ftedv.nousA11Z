@@ -1,7 +1,7 @@
 {
   "name": {
-    "en": "NOUS A11Z Power Strip",
-    "de": "NOUS A11Z Steckdosenleiste"
+    "en": "NOUS A11Z / compatible TS011F Power Strip",
+    "de": "NOUS A11Z / kompatible TS011F Steckdosenleiste"
   },
   "class": "socket",
   "capabilities": [
@@ -29,7 +29,11 @@
     }
   ],
   "zigbee": {
-    "manufacturerName": "_TZ3210_6cmeijtd",
+    "manufacturerName": [
+      "_TZ3210_6cmeijtd",
+      "_TZ3000_c7nc9w3c",
+      "_TZ3210_c7nc9w3c"
+    ],
     "productId": "TS011F",
     "endpoints": {
       "1": {
@@ -48,8 +52,8 @@
     "learnmode": {
       "image": "/drivers/a11z/assets/learnmode.svg",
       "instruction": {
-        "en": "Reset the NOUS A11Z power strip and start pairing.",
-        "de": "Setze die NOUS A11Z Steckdosenleiste zurück und starte das Pairing."
+        "en": "Reset the power strip and start pairing.",
+        "de": "Setze die Steckdosenleiste zurück und starte das Pairing."
       }
     }
   }
